@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DICED Salads | Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f8f0;
+            color: #333;
+        }
+
+        header {
+            background: #4CAF50;
+            padding: 20px 0;
+            color: white;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        nav {
+            background: #45a049;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #d4ffd4;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease;
+        }
+
+        .intro h2 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .buttons button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .buttons button:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+
+        .carousel {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: none;
+        }
+
+        .carousel img.active {
+            display: block;
+            animation: fadeIn 1s ease;
+        }
+
+        .carousel .prev,
+        .carousel .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .carousel .prev {
+            left: 10px;
+        }
+
+        .carousel .next {
+            right: 10px;
+        }
+
+        .carousel-dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .carousel-dots span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #ccc;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .carousel-dots span.active {
+            background: #4CAF50;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        footer {
+            background: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DICED Salads</h1>
+    </header>
+
+    <nav>
+        <a href="index2.html">Home</a>
+        <a href="menu3.html">Menu</a>
+        <a href="builder.html">Salad Builder</a>
+        <a href="about.html">About Us</a>
+    </nav>
+
+    <main>
+        <section class="intro">
+            <h2>Welcome to DICED Salads!</h2>
+            <p>
+                Fresh, healthy, and customizable salads made just for you. Whether you're looking for high-protein meals,
+                weight management options, or a quick healthy bite, we've got you covered.
+            </p>
+            <div class="buttons">
+                <button onclick="window.location.href='auth.html'">Sign Up</button>
+                <button onclick="window.location.href='auth.html'">Log In</button>
+            </div>
+        </section>
+
+        <div class="carousel">
+            <img src="/Users/pratiktanikella/Downloads/salad1.jpg" class="active">
+            <img src="/Users/pratiktanikella/Downloads/salad2.webp">
+            <img src="/Users/pratiktanikella/Downloads/salad3.webp">
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
+        </div>
+        <div class="carousel-dots"></div>
+
+        <section class="intro">
+            <h2>Salads of the Month</h2>
+            <p>Check out our latest seasonal creations made from the freshest ingredients!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Contact us: info@dicedsalads.com | (919) 900-7597</p>
+        <p>&copy; 2025 DICED Salads</p>
+    </footer>
+
+    <script>
+        const slides = document.querySelectorAll('.carousel img');
+        let currentIndex = 0;
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+        const dotsContainer = document.querySelector('.carousel-dots');
+
+        slides.forEach((_, i) => {
+            let dot = document.createElement('span');
+            dot.addEventListener('click', () => {
+                currentIndex = i;
+                showSlide(currentIndex);
+            });
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = dotsContainer.querySelectorAll('span');
+
+        function showSlide(i) {
+            slides.forEach((s, j) => {
+                s.classList.remove('active');
+                dots[j].classList.remove('active');
+                if (i === j) {
+                    s.classList.add('active');
+                    dots[j].classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            showSlide(currentIndex);
+        }
+
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+        setInterval(nextSlide, 10000);
+
+        showSlide(currentIndex);
+    </script>
+</body>
+</html>

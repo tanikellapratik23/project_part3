@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DICED Salads | Salad Builder</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f9f9f9;
+        color: #333;
+    }
+
+    header {
+        background: #005035;
+        color: white;
+        padding: 1rem 2rem;
+        text-align: center;
+    }
+
+    nav {
+        background: #007a4d;
+        padding: 0.5rem 2rem;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 0.3rem 0.6rem;
+        border-radius: 5px;
+        transition: background 0.3s;
+    }
+
+    nav a:hover {
+        background: #004d33;
+    }
+
+    main {
+        max-width: 700px;
+        margin: 2rem auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        color: #005035;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-top: 1rem;
+    }
+
+    select, input[type="checkbox"] {
+        margin: 0.3rem 0.5rem 0.3rem 0;
+    }
+
+    button {
+        margin-top: 1.5rem;
+        padding: 0.7rem 1.5rem;
+        background: #005035;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.3s;
+    }
+
+    button:hover {
+        background: #004025;
+    }
+
+    .result {
+        margin-top: 20px;
+        font-size: 1.5em;
+        font-weight: bold;
+        text-align: center;
+        transition: all 0.3s ease;
+        opacity: 0;
+    }
+
+    .result.show {
+        opacity: 1;
+    }
+
+    footer {
+        background: #005035;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        margin-top: 2rem;
+    }
+</style>
+</head>
+<body>
+<header>
+    <h1>DICED Salads</h1>
+</header>
+
+<nav>
+    <a href="index2.html">Home</a>
+    <a href="menu3.html">Menu</a>
+    <a href="builder.html">Salad Builder</a>
+    <a href="about.html">About Us</a>
+</nav>
+
+<main>
+    <h2>Build Your Own Salad</h2>
+    <form id="saladForm">
+        <label for="base">Choose a Base:</label>
+        <select id="base" required>
+            <option value="" data-price="0" data-calories="0">-- Select a base --</option>
+            <option value="Romaine Lettuce" data-price="3" data-calories="10">Romaine Lettuce</option>
+            <option value="Spinach" data-price="3.5" data-calories="15">Spinach</option>
+            <option value="Kale" data-price="4" data-calories="20">Kale</option>
+            <option value="Quinoa Bowl" data-price="4.5" data-calories="120">Quinoa Bowl</option>
+        </select>
+
+        <label>Choose Protein:</label>
+        <input type="checkbox" value="Grilled Chicken" data-price="4" data-calories="150"> Grilled Chicken<br>
+        <input type="checkbox" value="Tofu" data-price="3" data-calories="80"> Tofu<br>
+        <input type="checkbox" value="Salmon" data-price="5" data-calories="200"> Salmon<br>
+        <input type="checkbox" value="Steak" data-price="6" data-calories="250"> Steak<br>
+
+        <label>Choose Toppings:</label>
+        <input type="checkbox" value="Avocado" data-price="1" data-calories="50"> Avocado<br>
+        <input type="checkbox" value="Tomatoes" data-price="0.5" data-calories="10"> Tomatoes<br>
+        <input type="checkbox" value="Olives" data-price="0.5" data-calories="25"> Olives<br>
+        <input type="checkbox" value="Cucumbers" data-price="0.5" data-calories="5"> Cucumbers<br>
+        <input type="checkbox" value="Almonds" data-price="1" data-calories="30"> Almonds<br>
+
+        <label for="dressing">Choose a Dressing:</label>
+        <select id="dressing" required>
+            <option value="" data-price="0" data-calories="0">-- Select a dressing --</option>
+            <option value="Caesar" data-price="0.5" data-calories="80">Caesar</option>
+            <option value="Ranch" data-price="0.5" data-calories="90">Ranch</option>
+            <option value="Vinaigrette" data-price="0.5" data-calories="60">Vinaigrette</option>
+            <option value="Olive Oil" data-price="0.5" data-calories="40">Olive Oil</option>
+        </select>
+
+        <button type="submit">Build Salad</button>
+    </form>
+
+    <div class="result" id="result">
+        Price: $0.00 | Calories: 0
+    </div>
+</main>
+
+<footer>
+    <p>Contact us: info@dicedsalads.com | (919) 900-7597</p>
+    <p>&copy; 2025 DICED Salads</p>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("saladForm");
+    const result = document.getElementById("result");
+
+    function calculateTotals() {
+        let price = 0;
+        let calories = 0;
+
+        // Base
+        const base = document.getElementById("base");
+        price += parseFloat(base.selectedOptions[0]?.dataset.price || 0);
+        calories += parseFloat(base.selectedOptions[0]?.dataset.calories || 0);
+
+        // Dressing
+        const dressing = document.getElementById("dressing");
+        price += parseFloat(dressing.selectedOptions[0]?.dataset.price || 0);
+        calories += parseFloat(dressing.selectedOptions[0]?.dataset.calories || 0);
+
+        // Proteins & Toppings
+        const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(cb => {
+            if (cb.checked) {
+                price += parseFloat(cb.dataset.price || 0);
+                calories += parseFloat(cb.dataset.calories || 0);
+            }
+        });
+
+        return { price, calories };
+    }
+
+    function animateTotals(startPrice, endPrice, startCalories, endCalories, duration) {
+        const steps = 30;
+        let stepCount = 0;
+        const stepTime = duration / steps;
+        const priceIncrement = (endPrice - startPrice) / steps;
+        const calIncrement = (endCalories - startCalories) / steps;
+
+        clearInterval(result._interval); // clear previous animation
+
+        result._interval = setInterval(() => {
+            stepCount++;
+            const currentPrice = startPrice + priceIncrement * stepCount;
+            const currentCalories = startCalories + calIncrement * stepCount;
+
+            result.textContent = `Price: $${currentPrice.toFixed(2)} | Calories: ${Math.round(currentCalories)}`;
+            result.classList.add("show");
+
+            if (stepCount >= steps) clearInterval(result._interval);
+        }, stepTime);
+    }
+
+    form.addEventListener("submit", e => {
+        e.preventDefault();
+
+        const totals = calculateTotals();
+
+        const currentPrice = parseFloat(result.textContent.split("$")[1]) || 0;
+        const currentCalories = parseInt(result.textContent.split(": ")[2]) || 0;
+
+        animateTotals(currentPrice, totals.price, currentCalories, totals.calories, 500);
+    });
+});
+</script>
+</body>
+</html>

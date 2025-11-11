@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DICED Salads | Rewards</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f8f0;
+      color: #333;
+    }
+    header {
+      background-color: #4CAF50;
+      padding: 20px 0;
+      color: white;
+      text-align: center;
+    }
+    nav {
+      background-color: #45a049;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+    nav a {
+      margin: 0 15px;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: #d4ffd4; }
+    main {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .rewards-box {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+    .rewards-box h2 {
+      color: #4CAF50;
+      margin-bottom: 15px;
+    }
+    .points {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+    .perk {
+      background: #e8fbe8;
+      margin: 10px 0;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #4CAF50;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background: #45a049;
+      transform: scale(1.05);
+    }
+    footer {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DICED Salads</h1>
+  </header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="menu3.html">Menu</a>
+    <a href="builder.html">Salad Builder</a>
+    <a href="about.html">About Us</a>
+  </nav>
+  <main>
+    <div class="rewards-box">
+      <h2>Welcome Back!</h2>
+      <p class="points">🥗 120 Points</p>
+      <p>You're on your way to your next reward!</p>
+      <div class="perk">✅ Free Drink at 150 Points</div>
+      <div class="perk">✅ $5 Off at 200 Points</div>
+      <div class="perk">✅ Free Salad at 400 Points</div>
+      <button onclick="window.location.href='menu3.html'">Order Now</button>
+    </div>
+  </main>
+  <footer>
+    <p>Contact us: info@dicedsalads.com | (919) 900-7597</p>
+    <p>&copy; 2025 DICED Salads</p>
+  </footer>
+</body>
+</html>
